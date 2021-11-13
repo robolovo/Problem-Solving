@@ -33,7 +33,7 @@ public class NetworkDelayTime {
             graph.get(a).add(new Node(b, d));
         }
 
-        dijkstra(k);
+        dijkstra_pq(k);
 
         int answer = 0;
         for (int i = 1; i <= n; i++) {
@@ -47,7 +47,7 @@ public class NetworkDelayTime {
         return answer;
     }
 
-    private void dijkstra(int start) {
+    private void dijkstra_pq(int start) {
         PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> o1.distance - o2.distance);
 
         pq.offer(new Node(start, 0));
