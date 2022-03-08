@@ -1,9 +1,6 @@
 package problem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /*
 *   LeetCode 207. Course Schedule (Medium)
@@ -18,7 +15,6 @@ public class CourseSchedule {
         for (int[] prerequisite : prerequisites) {
             graph[prerequisite[1]].add(prerequisite[0]);
         }
-
         boolean[] processed = new boolean[numCourses];
         boolean[] visited = new boolean[numCourses];
         for (int i = 0; i < numCourses; i++) {
@@ -33,20 +29,19 @@ public class CourseSchedule {
         if (processed[course]) {
             return false;
         }
-
         if (visited[course]) {
             return true;
-        } else {
-            visited[course] = true;
-            for (int c : graph[course]) {
-                if (dfs(graph, visited, processed, c)) {
-                    return true;
-                }
-            }
-            processed[course] = true;
-            visited[course] = false;
-            return false;
         }
+
+        visited[course] = true;
+        for (int c : graph[course]) {
+            if (dfs(graph, visited, processed, c)) {
+                return true;
+            }
+        }
+        processed[course] = true;
+        visited[course] = false;
+        return false;
     }
 
     public static void main(String[] args) {
